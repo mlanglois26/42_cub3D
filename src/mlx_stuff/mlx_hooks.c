@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   mlx_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrischma <hrischma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malanglo <malanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 10:54:56 by malanglo          #+#    #+#             */
-/*   Updated: 2024/10/16 14:03:00 by hrischma         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:19:16 by malanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,28 @@ static void	check_key(int key, t_data *data)
 		move_forward(data);
 	else if (key == 115)
 		move_backward(data);
-	else if (key == 97)
-		move_left(data);
-	else if (key == 100)
-		move_right(data);
-	else if (key == 65363)
-		rotate_right(data);
-	else if (key == 65361)
-		rotate_left(data);
+	if (data->player->z == 'N' || data->player->z == 'S')
+	{
+		if (key == 97)
+			move_right(data);
+		else if (key == 100)
+			move_left(data);	
+		else if (key == 65363)
+			rotate_left(data);
+		else if (key == 65361)
+			rotate_right(data);
+	}
+	else
+	{
+		if (key == 97)
+			move_left(data);
+		else if (key == 100)
+			move_right(data);
+		else if (key == 65363)
+			rotate_right(data);
+		else if (key == 65361)
+			rotate_left(data);
+	}
 }
 
 int	on_key_press(int key, t_data *data)
